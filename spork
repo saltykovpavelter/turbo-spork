@@ -1,0 +1,15 @@
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.output = input + " ready"
+            self.state = .finished
+        }
+    }
+}
+
+class AsyncOperation: Operation {
+    enum State: String {
+        case ready, executing, finished
+        
+        fileprivate var keyPath: String {
+            "is" + rawValue.capitalized
+        }
+    }
